@@ -12,11 +12,11 @@ class TweetService {
     async create(data){ 
         const content=data.content;
         let tags=content.match(/#[a-zA-Z0-9_]+/g); //regex to extract hashtags 
-        tags=tags.map((tag)=>tag.substring(1)); //remove # from start
-       
+        tags=tags.map((tag)=>tag.substring(1).toLowerCase()); //remove # from start
+          
         const tweet=await this.tweetRepository.create(data);
 
-        const alreadyPresentTags=await this.hashtagRepository.findbyName(tags)
+        const alreadyPresentTags=await this.hashtagRepository.findbyName(tags); 
         let titleofPresentTags= alreadyPresentTags.map(tag=>tag.title);
         let insertable=tags.filter((tag)=>!titleofPresentTags.includes(tag));
         //we have to map the title and the tweet id to insert properly 

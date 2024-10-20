@@ -26,10 +26,10 @@ app.listen(3000,async()=>{
     //     email:'user@example.com', 
     //     name:'test user',
     //     password:'123'
-    // });
-    const users=await userRepo.getAll(); 
+    // // });
+    // const users=await userRepo.getAll(); 
 
-    const likeService = new LikeService();
-    await likeService.toggleLike(tweets[0]?.id,'Tweet',users[0]._id);  
+    // const likeService = new LikeService();
+    // await likeService.toggleLike(tweets[0]?.id,'Tweet',users[0]._id);  
 
 });

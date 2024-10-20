@@ -40,10 +40,10 @@ class CrudRepository {
 
     async getAll( ){
         try {
-            const result=await this.model.findById({});
+            const result=await this.model.find({});
             return result;
         } catch (error) {
-            console.log('error in crud get all  repo');
+            console.log('error in crud get all repo');
             throw error;
         }
     }

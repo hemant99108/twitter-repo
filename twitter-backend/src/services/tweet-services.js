@@ -37,6 +37,17 @@ class TweetService {
          * 3- add teeet id to inside all the hashtags(already present tags add id to them of the newly inserted tweet )          * 
          */
     }
+
+    async get(tweetId){
+        try {
+            const response=await this.tweetRepository.getWithComments(tweetId);
+            return response;
+
+
+        } catch (error) {
+            console.log('err in gettweet sevice'+error.message);
+        }
+    }
 }
 
 export default TweetService;

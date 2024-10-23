@@ -7,17 +7,22 @@ import { createComment } from '../../controllers/comment-controller.js';
 import {signup,login } from '../../controllers/auth-controller.js';
 import { authenticate } from '../../middlewares/authenticate.js';
 
+
+import multer from 'multer';
+import {uploadImage} from '../../config/fileupload.js';
+const upload=multer({dest:'uploads/'});
+
 const router=express.Router();
 
 router.post('/tweets',authenticate,createTweet);
 router.post('/likes/toggle',toggleLike);
-router.post('/comments',createComment);
-router.post('/tweet/:id',getTweet);
+router.post('/comments',authenticate,createComment);
+router.post('/tweet/:id',authenticate,getTweet);
 
 router.post('/signup',signup);
 router.post('/login',login);
 
-
+router.post('/imageUpload',upload.single('image'),uploadImage);
 
 
 
